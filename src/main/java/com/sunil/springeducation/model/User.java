@@ -34,8 +34,8 @@ public class User {
     @Override
     public String toString() {
         return String.format(
-                "User[user_id=%d, email='%s', phone='%s",
-                this.user_id, this.email, this.phone
+                "User[user_id=%d, email='%s', name='%s', phone='%s",
+                this.user_id, this.email, this.name, this.phone
         );
     }
 }
