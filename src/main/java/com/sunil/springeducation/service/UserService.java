@@ -14,6 +14,12 @@ public class UserService {
         this.userRepository = userRepository;
     };
 
+    public void findAll() {
+        for(User user: this.userRepository.findAll()) {
+            System.out.println(user);
+        }
+    };
+
     public void initializeUsers() {
         User user1 = User.builder()
                 .email("example@sample.com")
