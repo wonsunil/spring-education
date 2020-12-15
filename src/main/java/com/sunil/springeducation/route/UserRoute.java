@@ -20,7 +20,7 @@ public class UserRoute {
 
     @GetMapping("")
     @ResponseBody
-    public List<User> getUser() {
+    public List<User> getUsers() {
         return this.userService.findAll();
     };
 
