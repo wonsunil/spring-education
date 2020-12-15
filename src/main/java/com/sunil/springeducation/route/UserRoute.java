@@ -33,7 +33,12 @@ public class UserRoute {
 
     @PostMapping("")
     public void createUser(UserRegisterVO user) {
-        userService.createUser(user);
+        this.userService.createUser(user);
+    };
+
+    @DeleteMapping("/{userId}")
+    public void deleteUser(@PathVariable(value = "userId") String userId) {
+        this.userService.deleteUser(Integer.parseInt(userId));
     };
 
     @GetMapping("/initialize")
