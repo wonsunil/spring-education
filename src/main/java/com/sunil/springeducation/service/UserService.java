@@ -5,6 +5,7 @@ import com.sunil.springeducation.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -22,12 +23,10 @@ public class UserService {
         if(searchedUser == null) throw new Exception("해당 유저를 찾지 못하였습니다");
 
         return searchedUser.get();
-    }
+    };
 
-    public void findAll() {
-        for(User user: this.userRepository.findAll()) {
-            System.out.println(user);
-        }
+    public List<User> findAll() {
+        return this.userRepository.findAll();
     };
 
     public void initializeUsers() {

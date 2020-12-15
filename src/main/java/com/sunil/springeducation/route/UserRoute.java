@@ -5,6 +5,8 @@ import com.sunil.springeducation.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/user")
 public class UserRoute {
@@ -17,8 +19,9 @@ public class UserRoute {
     };
 
     @GetMapping("")
-    public void getUser() {
-        this.userService.findAll();
+    @ResponseBody
+    public List<User> getUser() {
+        return this.userService.findAll();
     };
 
     @GetMapping("/{userId}")
