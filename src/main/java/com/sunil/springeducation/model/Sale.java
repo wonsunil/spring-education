@@ -42,7 +42,7 @@ public class Sale {
     @Override
     public String toString() {
         return String.format(
-                "User[saleId=%d, userId=%d, productId=%d, paidPrice=%d, listPrice=%d, amount=%d]",
+                "Sale[saleId=%d, userId=%d, productId=%d, paidPrice=%d, listPrice=%d, amount=%d]",
                 this.saleId, this.userId, this.productId, this.paidPrice, this.listPrice, this.amount
         );
     }

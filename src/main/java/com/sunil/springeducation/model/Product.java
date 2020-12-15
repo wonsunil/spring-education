@@ -38,7 +38,7 @@ public class Product {
     @Override
     public String toString() {
         return String.format(
-                "User[productId=%d, name='%s', description='%s', listPrice=%d, price=%d]",
+                "Product[productId=%d, name='%s', description='%s', listPrice=%d, price=%d]",
                 this.productId, this.name, this.description, this.listPrice, this.price
         );
     }
