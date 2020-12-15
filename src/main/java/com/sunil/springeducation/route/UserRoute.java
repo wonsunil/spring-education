@@ -2,6 +2,7 @@ package com.sunil.springeducation.route;
 
 import com.sunil.springeducation.model.User;
 import com.sunil.springeducation.service.UserService;
+import com.sunil.springeducation.vo.UserRegisterVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,7 +29,12 @@ public class UserRoute {
     @ResponseBody
     public User getUser(@PathVariable(value = "userId") String userId) throws Exception{
         return this.userService.find(Integer.parseInt(userId));
-    }
+    };
+
+    @PostMapping("")
+    public void createUser(UserRegisterVO user) {
+        userService.createUser(user);
+    };
 
     @GetMapping("/initialize")
     public void initializers() {
