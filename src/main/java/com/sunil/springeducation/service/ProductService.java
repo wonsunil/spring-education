@@ -2,6 +2,7 @@ package com.sunil.springeducation.service;
 
 import com.sunil.springeducation.model.Product;
 import com.sunil.springeducation.repository.ProductRepository;
+import com.sunil.springeducation.vo.ProductRegisterVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -55,5 +56,21 @@ public class ProductService {
         this.productRepository.save(product2);
         this.productRepository.save(product3);
         this.productRepository.flush();
+    };
+
+    public void createProduct(ProductRegisterVO product) {
+        Product createProduct = Product.builder()
+                .name(product.getName())
+                .description(product.getDescription())
+                .listPrice(product.getListPrice())
+                .price(product.getPrice())
+                .build();
+
+        this.productRepository.save(createProduct);
+        this.productRepository.flush();
+    };
+
+    public void deleteProduct(int productId) {
+        this.productRepository.deleteById(productId);
     };
 };

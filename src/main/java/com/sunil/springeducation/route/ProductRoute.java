@@ -3,6 +3,7 @@ package com.sunil.springeducation.route;
 import com.sunil.springeducation.model.Product;
 import com.sunil.springeducation.model.Sale;
 import com.sunil.springeducation.service.ProductService;
+import com.sunil.springeducation.vo.ProductRegisterVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,4 +35,14 @@ public class ProductRoute {
     public void initializers() {
         this.productService.initializeProducts();
     };
+
+    @PostMapping("")
+    public void createProduct(ProductRegisterVO product) {
+        this.productService.createProduct(product);
+    };
+
+    @DeleteMapping("/{productId}")
+    public void deleteProduct(@PathVariable(value = "productId") String productId) {
+        this.productService.deleteProduct(Integer.parseInt(productId));
+    }
 };
