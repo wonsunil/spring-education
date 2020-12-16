@@ -47,4 +47,8 @@ public class SaleRoute {
     public void refund(@PathVariable(value = "saleId") String saleId) throws Exception{
         this.saleService.refund(Integer.parseInt(saleId));
     };
+
+    public List<Sale> getSalesByUserId(int userId) {
+        return this.saleService.findByUserId(userId);
+    };
 }

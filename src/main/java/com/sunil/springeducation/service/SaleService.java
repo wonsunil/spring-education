@@ -115,4 +115,8 @@ public class SaleService {
         this.saleRepository.save(sale3);
         this.saleRepository.flush();
     };
+
+    public List<Sale> findByUserId(int userId) {
+        return this.saleRepository.findByUserId(userId);
+    }
 }

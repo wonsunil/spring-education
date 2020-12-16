@@ -1,6 +1,8 @@
 package com.sunil.springeducation.route;
 
+import com.sunil.springeducation.model.Sale;
 import com.sunil.springeducation.model.User;
+import com.sunil.springeducation.service.SaleService;
 import com.sunil.springeducation.service.UserService;
 import com.sunil.springeducation.vo.UserRegisterVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,12 +13,13 @@ import java.util.List;
 @RestController
 @RequestMapping("/user")
 public class UserRoute {
-
     private final UserService userService;
+    private final SaleService saleService;
 
     @Autowired
-    public UserRoute(UserService userService) {
+    public UserRoute(UserService userService, SaleService saleService) {
         this.userService = userService;
+        this.saleService = saleService;
     };
 
     @GetMapping("")
@@ -44,5 +47,10 @@ public class UserRoute {
     @GetMapping("/initialize")
     public void initializers() {
         this.userService.initializeUsers();
+    };
+
+    @GetMapping("/{userId}/purchase_list")
+    public List<Sale> userPurchaseList(@PathVariable(value = "userId") String userId) {
+        return this.saleService.findByUserId(Integer.parseInt(userId));
     };
 }
