@@ -1,6 +1,8 @@
 package com.sunil.springeducation.service;
 
+import com.sunil.springeducation.datamodel.SaleGroupByUserId;
 import com.sunil.springeducation.datamodel.SaleStatus;
+import com.sunil.springeducation.datamodel.UserTotalPaidPrice;
 import com.sunil.springeducation.model.Product;
 import com.sunil.springeducation.model.Sale;
 import com.sunil.springeducation.model.User;
@@ -118,5 +120,10 @@ public class SaleService {
 
     public List<Sale> findByUserId(int userId) {
         return this.saleRepository.findByUserId(userId);
-    }
+    };
+
+    public UserTotalPaidPrice getTotalPaidPriceByUserId(int userId) {
+        SaleGroupByUserId groupData = this.saleRepository.PurchaseAmountGroupByUserId(userId);
+        return new UserTotalPaidPrice(groupData);
+    };
 }
