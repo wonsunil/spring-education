@@ -53,7 +53,7 @@ public class UserService {
         this.userRepository.flush();
     };
 
-    public void createUser(UserRegisterVO user) {
+    public int createUser(UserRegisterVO user) {
         User createUser = User.builder()
                 .email(user.getEmail())
                 .name(user.getName())
@@ -62,6 +62,8 @@ public class UserService {
 
         this.userRepository.save(createUser);
         this.userRepository.flush();
+
+        return createUser.getUserId();
     };
 
     public void deleteUser(int userId) {
