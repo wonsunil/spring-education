@@ -36,9 +36,9 @@ public class SaleRoute {
     public void initializers() {
         this.saleService.initializeSales();
     };
-    
+
     @PostMapping("/purchase")
-    public void purchase(SalePurchaseVO sale) {
+    public void purchase(SalePurchaseVO sale) throws Exception {
         int saleId = this.saleService.createSale(sale);
         this.saleService.purchase(saleId);
     };
