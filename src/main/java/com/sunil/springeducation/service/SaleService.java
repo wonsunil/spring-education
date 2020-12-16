@@ -1,8 +1,12 @@
 package com.sunil.springeducation.service;
 
 import com.sunil.springeducation.datamodel.SaleStatus;
+import com.sunil.springeducation.model.Product;
 import com.sunil.springeducation.model.Sale;
+import com.sunil.springeducation.model.User;
+import com.sunil.springeducation.repository.ProductRepository;
 import com.sunil.springeducation.repository.SaleRepository;
+import com.sunil.springeducation.repository.UserRepository;
 import com.sunil.springeducation.vo.SalePurchaseVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,10 +17,14 @@ import java.util.Optional;
 @Controller
 public class SaleService {
     private final SaleRepository saleRepository;
+    private final UserRepository userRepository;
+    private final ProductRepository productRepository;
 
     @Autowired
-    public SaleService(SaleRepository saleRepository) {
+    public SaleService(SaleRepository saleRepository, UserRepository userRepository, ProductRepository productRepository) {
         this.saleRepository = saleRepository;
+        this.userRepository = userRepository;
+        this.productRepository = productRepository;
     };
 
     public Sale find(int saleId) throws Exception {
@@ -31,7 +39,20 @@ public class SaleService {
         return this.saleRepository.findAll();
     };
 
-    public int createSale(SalePurchaseVO sale) {
+    public int createSale(SalePurchaseVO sale) throws Exception {
+        Optional<User> user = this.userRepository.findById(sale.getUserId());
+        Optional<Product> product = this.productRepository.findById(sale.getProductId());
+
+        Product findProduct = product.orElseThrow(() -> new Exception("존재하지 않는 상품입니다"));
+        user.orElseThrow(() -> new Exception("존재하지 않는 유저입니다"));
+
+        if(sale.getListPrice() != findProduct.getListPrice() * sale.getAmount()) {
+            throw new Exception("정가가 상품정보에 등록된 가격과 다릅니다");
+        };
+        if(sale.getPaidPrice() != findProduct.getPrice() * sale.getAmount()) {
+            throw new Exception("실제 구매가격이 상품정보에 등록된 가격과 다릅니다");
+        };
+
         Sale createSale = Sale.builder()
                 .userId(sale.getUserId())
                 .productId(sale.getProductId())
