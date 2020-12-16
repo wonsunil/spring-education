@@ -3,6 +3,7 @@ package com.sunil.springeducation.route;
 import com.sunil.springeducation.model.Sale;
 import com.sunil.springeducation.model.User;
 import com.sunil.springeducation.service.SaleService;
+import com.sunil.springeducation.vo.SalePurchaseVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,5 +35,11 @@ public class SaleRoute {
     @GetMapping("/initialize")
     public void initializers() {
         this.saleService.initializeSales();
+    };
+    
+    @PostMapping("/purchase")
+    public void purchase(SalePurchaseVO sale) {
+        int saleId = this.saleService.createSale(sale);
+        this.saleService.purchase(saleId);
     };
 }
