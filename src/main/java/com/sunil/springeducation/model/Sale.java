@@ -29,7 +29,8 @@ public class Sale {
 
     @Column(nullable = false)
     private int amount;
-    
+
+    @Setter
     @Enumerated(EnumType.STRING)
     private SaleStatus status = SaleStatus.NON_PAID;
 
