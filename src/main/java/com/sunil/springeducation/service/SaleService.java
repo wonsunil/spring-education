@@ -1,7 +1,9 @@
 package com.sunil.springeducation.service;
 
+import com.sunil.springeducation.datamodel.SaleStatus;
 import com.sunil.springeducation.model.Sale;
 import com.sunil.springeducation.repository.SaleRepository;
+import com.sunil.springeducation.vo.SalePurchaseVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -27,6 +29,34 @@ public class SaleService {
 
     public List<Sale> findAll() {
         return this.saleRepository.findAll();
+    };
+
+    public int createSale(SalePurchaseVO sale) {
+        Sale createSale = Sale.builder()
+                .userId(sale.getUserId())
+                .productId(sale.getProductId())
+                .paidPrice(sale.getPaidPrice())
+                .listPrice(sale.getListPrice())
+                .amount(sale.getAmount())
+                .build();
+
+        this.saleRepository.save(createSale);
+        this.saleRepository.flush();
+
+        return createSale.getSaleId();
+    };
+
+    public void purchase(int saleId) throws Exception {
+        Optional<Sale> targetSale = this.saleRepository.findById(saleId);
+        Sale sale = targetSale.orElseThrow(() -> new Exception("결제를 진행하는 도중에 문제가 발생했습니다!"));
+
+        sale.setStatus(SaleStatus.PAID);
+        this.saleRepository.save(sale);
+        this.saleRepository.flush();
+    };
+
+    public void refund(int orderId) {
+
     };
 
     public void initializeSales() {
