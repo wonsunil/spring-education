@@ -1,5 +1,7 @@
 package com.sunil.springeducation.route;
 
+import com.sunil.springeducation.datamodel.UserGradeEnum;
+import com.sunil.springeducation.datamodel.UserTotalPaidPrice;
 import com.sunil.springeducation.model.Sale;
 import com.sunil.springeducation.model.User;
 import com.sunil.springeducation.service.SaleService;
@@ -52,5 +54,16 @@ public class UserRoute {
     @GetMapping("/{userId}/purchase_list")
     public List<Sale> userPurchaseList(@PathVariable(value = "userId") String userId) {
         return this.saleService.findByUserId(Integer.parseInt(userId));
+    };
+
+    @GetMapping("/{userId}/purchase_amount")
+    public UserTotalPaidPrice userPurchaseAmount(@PathVariable(value = "userId") String userId) {
+        return this.saleService.getTotalPaidPriceByUserId(Integer.parseInt(userId));
+    };
+
+    @GetMapping("/{userId}/grade")
+    @ResponseBody
+    public UserGradeEnum userGrade(@PathVariable(value = "userId") String userId) {
+        return this.userService.getUserGrade(Integer.parseInt(userId));
     };
 }
