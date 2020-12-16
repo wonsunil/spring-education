@@ -1,16 +1,11 @@
 package com.sunil.springeducation.model;
 
+import com.sunil.springeducation.datamodel.SaleStatus;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-
-enum SaleStatus{
-    NON_PAID,
-    PAID,
-    REFUNDED
-}
 
 @Getter
 @NoArgsConstructor
