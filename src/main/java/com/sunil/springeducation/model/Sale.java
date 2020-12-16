@@ -4,6 +4,7 @@ import com.sunil.springeducation.datamodel.SaleStatus;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 
@@ -35,8 +36,7 @@ public class Sale {
     private SaleStatus status = SaleStatus.NON_PAID;
 
     @Builder
-    public Sale(int saleId, int userId, int productId, int paidPrice, int listPrice, int amount, String status) {
-        this.saleId = saleId;
+    public Sale(int userId, int productId, int paidPrice, int listPrice, int amount, String status) {
         this.userId = userId;
         this.productId = productId;
         this.paidPrice = paidPrice;
