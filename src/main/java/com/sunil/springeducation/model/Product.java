@@ -26,20 +26,23 @@ public class Product {
     @Column
     private int price;
 
+    @Column(length = 40)
+    private String category;
 
     @Builder
-    public Product(String name, String description, int listPrice, int price) {
+    public Product(String name, String description, int listPrice, int price, String category) {
         this.name = name;
         this.description = description;
         this.listPrice = listPrice;
         this.price = price;
+        this.category = category;
     }
 
     @Override
     public String toString() {
         return String.format(
-                "Product[productId=%d, name='%s', description='%s', listPrice=%d, price=%d]",
-                this.productId, this.name, this.description, this.listPrice, this.price
+                "Product[productId=%d, name='%s', description='%s', listPrice=%d, price=%d, category='%s']",
+                this.productId, this.name, this.description, this.listPrice, this.price, this.category
         );
     }
 }
