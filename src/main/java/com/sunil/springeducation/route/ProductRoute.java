@@ -44,11 +44,5 @@ public class ProductRoute {
     @DeleteMapping("/{productId}")
     public void deleteProduct(@PathVariable(value = "productId") String productId) {
         this.productService.deleteProduct(Integer.parseInt(productId));
-    };
-    
-    @GetMapping("/category/{categoryName}")
-    @ResponseBody
-    public List<Product> getProductsByCategory(@PathVariable(value = "categoryName") String categoryName) {
-        return this.productService.productsByCategory(categoryName);
-    };
+    }
 };
