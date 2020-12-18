@@ -1,8 +1,10 @@
 package com.sunil.springeducation.vo;
 
+import org.springframework.lang.Nullable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -10,10 +12,17 @@ import java.util.Date;
 @Setter
 @AllArgsConstructor
 public class CouponRegisterVO {
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     Date expireAt;
+
     int availableDays;
+
+    @Nullable
     int productId;
+
+    @Nullable
     String category;
+
     int discountPrice = 0;
     int discountPercentage = 0;
 
