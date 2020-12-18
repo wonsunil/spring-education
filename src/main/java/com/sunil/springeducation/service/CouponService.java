@@ -40,6 +40,6 @@ public class CouponService {
     public Coupon couponById(int couponId) throws Exception{
         Optional<Coupon> coupon = this.couponRepository.findById(couponId);
 
-        return coupon.get();
-    }
+        return coupon.orElseThrow(() -> new Exception("해당 쿠폰을 확인할 수 없습니다"));
+    };
 };
