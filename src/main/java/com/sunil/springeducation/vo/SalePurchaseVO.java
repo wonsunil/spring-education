@@ -3,6 +3,7 @@ package com.sunil.springeducation.vo;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.lang.Nullable;
 
 @Getter
 @Setter
@@ -13,6 +14,9 @@ public class SalePurchaseVO {
     int paidPrice;
     int listPrice;
     int amount;
+
+    @Nullable
+    int issuedCouponId;
 
     @Override
     public String toString() {
