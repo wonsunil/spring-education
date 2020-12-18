@@ -22,7 +22,7 @@ public class Coupon {
     int availableDays;
 
     @Column
-    String productId;
+    int productId;
 
     @Column
     String category;
@@ -34,7 +34,7 @@ public class Coupon {
     int discountPercentage = 0;
 
     @Builder
-    public Coupon(Date expireAt, int availableDays, String productId, String category, int discountPrice, int discountParentage) {
+    public Coupon(Date expireAt, int availableDays, int productId, String category, int discountPrice, int discountParentage) {
         this.expireAt = expireAt;
         this.availableDays = availableDays;
         this.productId = productId;
@@ -46,7 +46,7 @@ public class Coupon {
     @Override
     public String toString() {
         return String.format(
-                "Coupon[couponId=%d, expireAt='%s', availableDays=%d, productId='%s', category='%s', discountPrice=%d, discountPercentage=%d]",
+                "Coupon[couponId=%d, expireAt='%s', availableDays=%d, productId=%d, category='%s', discountPrice=%d, discountPercentage=%d]",
                 this.couponId, this.expireAt, this.availableDays, this.productId, this.category, this.discountPrice, this.discountPercentage
         );
     };
