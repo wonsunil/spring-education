@@ -5,7 +5,6 @@ import com.sunil.springeducation.model.IssuedCoupon;
 import com.sunil.springeducation.repository.CouponRepository;
 import com.sunil.springeducation.repository.IssuedCouponRepository;
 import com.sunil.springeducation.util.DateUtil;
-import com.sunil.springeducation.vo.IssueCouponVo;
 import org.springframework.stereotype.Controller;
 
 import java.util.Date;
@@ -21,8 +20,12 @@ public class IssuedCouponService {
         this.couponRepository = couponRepository;
     };
 
-    public int issuedCoupon(IssueCouponVo issueCouponVo) throws Exception{
-        Optional<Coupon> SearchedCoupon = this.couponRepository.findById(issueCouponVo.getCouponId());
+    public IssuedCoupon issueCouponById(int issueCouponId) throws Exception {
+        return this.issuedCouponRepository.findById(issueCouponId).orElseThrow((() -> new Exception("해당 ID로 발급된 쿠폰을 찾지 못했습니다.")));
+    };
+
+    public int issueCoupon(int couponId, int userId) throws Exception{
+        Optional<Coupon> SearchedCoupon = this.couponRepository.findById(couponId);
         Coupon coupon = SearchedCoupon.orElseThrow(() -> new Exception("해당 쿠폰을 찾지 못했습니다."));
 
         Date expireDate = null;
@@ -39,9 +42,9 @@ public class IssuedCouponService {
         };
 
         IssuedCoupon issuedCoupon = IssuedCoupon.builder()
-                .couponId(issueCouponVo.getCouponId())
+                .couponId(couponId)
                 .expiredAt(expireDate)
-                .userId(issueCouponVo.getUserId())
+                .userId(userId)
                 .build();
 
         this.issuedCouponRepository.save(issuedCoupon);
