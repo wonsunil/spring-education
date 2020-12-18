@@ -1,6 +1,6 @@
 package com.sunil.springeducation.route;
 
-import com.sunil.springeducation.service.InitializeService;
+import com.sunil.springeducation.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,15 +9,24 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/initialize")
 public class InitializeRoute {
-    private final InitializeService initializeService;
+    private final UserService userService;
+    private final ProductService productService;
+    private final SaleService saleService;
+    private final ReviewService reviewService;
 
     @Autowired
-    public InitializeRoute(InitializeService initializeService) {
-        this.initializeService = initializeService;
+    public InitializeRoute(UserService userService, ProductService productService, SaleService saleService, ReviewService reviewService) {
+        this.userService = userService;
+        this.productService = productService;
+        this.saleService = saleService;
+        this.reviewService = reviewService;
     };
 
     @GetMapping("")
     public void initialize() {
-        this.initializeService.initializer();
+        this.userService.initializeUsers();
+        this.productService.initializeProducts();
+        this.saleService.initializeSales();
+        this.reviewService.initializeReviews();
     };
 };
