@@ -1,6 +1,7 @@
 package com.sunil.springeducation.service;
 
 import com.sunil.springeducation.datamodel.SaleGroupByUserId;
+import com.sunil.springeducation.datamodel.dto.UserDTO;
 import com.sunil.springeducation.datamodel.enumModel.UserGradeEnum;
 import com.sunil.springeducation.datamodel.UserTotalPaidPrice;
 import com.sunil.springeducation.model.User;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Controller;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Controller
 public class UserService {
@@ -24,14 +26,14 @@ public class UserService {
         this.saleRepository = saleRepository;
     };
 
-    public User find(int userId) throws Exception{
+    public UserDTO userById(int userId) throws Exception{
         Optional<User> searchedUser = this.userRepository.findById(userId);
 
-        return searchedUser.orElseThrow(() -> new Exception("해당 유저를 찾지 못하였습니다"));
+        return new UserDTO(searchedUser.orElseThrow(() -> new Exception("해당 유저를 찾지 못하였습니다")));
     };
 
-    public List<User> findAll() {
-        return this.userRepository.findAll();
+    public List<UserDTO> users() {
+        return this.userRepository.findAll().stream().map(UserDTO::new).collect(Collectors.toList());
     };
 
     public void initializeUsers() {
