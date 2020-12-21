@@ -1,10 +1,12 @@
 package com.sunil.springeducation.route;
 
+import com.sunil.springeducation.datamodel.dto.CouponDTO;
+import com.sunil.springeducation.datamodel.dto.IssuedCouponDTO;
 import com.sunil.springeducation.service.CouponService;
 import com.sunil.springeducation.service.IssuedCouponService;
 import com.sunil.springeducation.model.Coupon;
 import com.sunil.springeducation.model.IssuedCoupon;
-import com.sunil.springeducation.vo.CouponRegisterVO;
+import com.sunil.springeducation.datamodel.vo.CouponRegisterVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,7 +24,7 @@ public class CouponRoute {
 
     @GetMapping("/{couponId}")
     @ResponseBody
-    public Coupon getCoupon(@PathVariable(value = "couponId") String couponId) throws Exception {
+    public CouponDTO getCoupon(@PathVariable(value = "couponId") String couponId) throws Exception {
         return this.couponService.couponById(Integer.parseInt(couponId));
     };
 
@@ -39,7 +41,7 @@ public class CouponRoute {
     
     @GetMapping("/issued-coupon/{issuedCouponId}")
     @ResponseBody
-    public IssuedCoupon getIssuedCoupon(@PathVariable(value = "issuedCouponId") String issuedCouponId) throws Exception{
+    public IssuedCouponDTO getIssuedCoupon(@PathVariable(value = "issuedCouponId") String issuedCouponId) throws Exception{
         return this.issuedCouponService.issueCouponById(Integer.parseInt(issuedCouponId));
     };
 }

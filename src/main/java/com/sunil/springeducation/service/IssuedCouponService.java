@@ -1,5 +1,6 @@
 package com.sunil.springeducation.service;
 
+import com.sunil.springeducation.datamodel.dto.IssuedCouponDTO;
 import com.sunil.springeducation.model.Coupon;
 import com.sunil.springeducation.model.IssuedCoupon;
 import com.sunil.springeducation.repository.CouponRepository;
@@ -20,8 +21,8 @@ public class IssuedCouponService {
         this.couponRepository = couponRepository;
     };
 
-    public IssuedCoupon issueCouponById(int issueCouponId) throws Exception {
-        return this.issuedCouponRepository.findById(issueCouponId).orElseThrow((() -> new Exception("해당 ID로 발급된 쿠폰을 찾지 못했습니다.")));
+    public IssuedCouponDTO issueCouponById(int issueCouponId) throws Exception {
+        return new IssuedCouponDTO(this.issuedCouponRepository.findById(issueCouponId).orElseThrow((() -> new Exception("해당 ID로 발급된 쿠폰을 찾지 못했습니다."))));
     };
 
     public int issueCoupon(int couponId, int userId) throws Exception{

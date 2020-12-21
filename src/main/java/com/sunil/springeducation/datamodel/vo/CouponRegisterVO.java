@@ -1,4 +1,4 @@
-package com.sunil.springeducation.vo;
+package com.sunil.springeducation.datamodel.vo;
 
 import org.springframework.lang.Nullable;
 import lombok.AllArgsConstructor;

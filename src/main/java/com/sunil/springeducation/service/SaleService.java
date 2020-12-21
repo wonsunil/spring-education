@@ -2,19 +2,21 @@ package com.sunil.springeducation.service;
 
 import com.sunil.springeducation.datamodel.SaleGroupByUserId;
 import com.sunil.springeducation.datamodel.UserTotalPaidPrice;
+import com.sunil.springeducation.datamodel.dto.SaleDTO;
 import com.sunil.springeducation.model.Coupon;
 import com.sunil.springeducation.model.IssuedCoupon;
 import com.sunil.springeducation.model.Product;
 import com.sunil.springeducation.model.Sale;
 import com.sunil.springeducation.model.User;
 import com.sunil.springeducation.repository.*;
-import com.sunil.springeducation.datamodel.SaleStatus;
-import com.sunil.springeducation.vo.SalePurchaseVO;
+import com.sunil.springeducation.datamodel.enumModel.SaleStatus;
+import com.sunil.springeducation.datamodel.vo.SalePurchaseVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Controller
 public class SaleService {
@@ -33,16 +35,14 @@ public class SaleService {
         this.issuedCouponRepository = issuedCouponRepository;
     };
 
-    public Sale find(int saleId) throws Exception {
+    public SaleDTO saleById(int saleId) throws Exception {
         Optional<Sale> searchedSale = this.saleRepository.findById(saleId);
 
-        return searchedSale.orElseThrow(
-                () -> new Exception("해당 판매기록을 찾을 수 없습니다")
-        );
+        return new SaleDTO(searchedSale.orElseThrow(() -> new Exception("해당 판매기록을 찾을 수 없습니다")));
     };
 
-    public List<Sale> findAll() {
-        return this.saleRepository.findAll();
+    public List<SaleDTO> sales() {
+        return this.saleRepository.findAll().stream().map(SaleDTO::new).collect(Collectors.toList());
     };
 
     private int getDiscountAmount(int originAmount, int discountAmount, int discountPercentage) {
@@ -145,8 +145,8 @@ public class SaleService {
         this.saleRepository.flush();
     };
 
-    public List<Sale> findByUserId(int userId) {
-        return this.saleRepository.findByUserId(userId);
+    public List<SaleDTO> findByUserId(int userId) {
+        return this.saleRepository.findByUserId(userId).stream().map(SaleDTO::new).collect(Collectors.toList());
     };
 
     public UserTotalPaidPrice getTotalPaidPriceByUserId(int userId) {

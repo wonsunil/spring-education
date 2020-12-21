@@ -1,12 +1,14 @@
 package com.sunil.springeducation.route;
 
-import com.sunil.springeducation.datamodel.UserGradeEnum;
+import com.sunil.springeducation.datamodel.dto.SaleDTO;
+import com.sunil.springeducation.datamodel.dto.UserDTO;
+import com.sunil.springeducation.datamodel.enumModel.UserGradeEnum;
 import com.sunil.springeducation.datamodel.UserTotalPaidPrice;
 import com.sunil.springeducation.model.User;
 import com.sunil.springeducation.service.SaleService;
 import com.sunil.springeducation.model.Sale;
 import com.sunil.springeducation.service.UserService;
-import com.sunil.springeducation.vo.UserRegisterVO;
+import com.sunil.springeducation.datamodel.vo.UserRegisterVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,14 +28,14 @@ public class UserRoute {
 
     @GetMapping("")
     @ResponseBody
-    public List<User> getUsers() {
-        return this.userService.findAll();
+    public List<UserDTO> getUsers() {
+        return this.userService.users();
     };
 
     @GetMapping("/{userId}")
     @ResponseBody
-    public User getUser(@PathVariable(value = "userId") String userId) throws Exception{
-        return this.userService.find(Integer.parseInt(userId));
+    public UserDTO getUser(@PathVariable(value = "userId") String userId) throws Exception{
+        return this.userService.userById(Integer.parseInt(userId));
     };
 
     @PostMapping("")
@@ -52,7 +54,7 @@ public class UserRoute {
     };
 
     @GetMapping("/{userId}/purchase_list")
-    public List<Sale> userPurchaseList(@PathVariable(value = "userId") String userId) {
+    public List<SaleDTO> userPurchaseList(@PathVariable(value = "userId") String userId) {
         return this.saleService.findByUserId(Integer.parseInt(userId));
     };
 

@@ -1,8 +1,9 @@
 package com.sunil.springeducation.route;
 
+import com.sunil.springeducation.datamodel.dto.SaleDTO;
 import com.sunil.springeducation.model.Sale;
 import com.sunil.springeducation.service.SaleService;
-import com.sunil.springeducation.vo.SalePurchaseVO;
+import com.sunil.springeducation.datamodel.vo.SalePurchaseVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,14 +22,14 @@ public class SaleRoute {
 
     @GetMapping("")
     @ResponseBody
-    public List<Sale> getSales() {
-        return this.saleService.findAll();
+    public List<SaleDTO> getSales() {
+        return this.saleService.sales();
     };
 
     @GetMapping("/{saleId}")
     @ResponseBody
-    public Sale getSale(@PathVariable(value = "saleId") String saleId) throws Exception{
-        return this.saleService.find(Integer.parseInt(saleId));
+    public SaleDTO getSale(@PathVariable(value = "saleId") String saleId) throws Exception{
+        return this.saleService.saleById(Integer.parseInt(saleId));
     };
 
     @GetMapping("/initialize")
@@ -47,7 +48,7 @@ public class SaleRoute {
         this.saleService.refund(Integer.parseInt(saleId));
     };
 
-    public List<Sale> getSalesByUserId(int userId) {
+    public List<SaleDTO> getSalesByUserId(int userId) {
         return this.saleService.findByUserId(userId);
     };
 }

@@ -1,8 +1,9 @@
 package com.sunil.springeducation.route;
 
+import com.sunil.springeducation.datamodel.dto.ProductDTO;
 import com.sunil.springeducation.service.ProductService;
 import com.sunil.springeducation.model.Product;
-import com.sunil.springeducation.vo.ProductRegisterVO;
+import com.sunil.springeducation.datamodel.vo.ProductRegisterVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,14 +21,14 @@ public class ProductRoute {
 
     @GetMapping("")
     @ResponseBody
-    public List<Product> getProducts() {
-        return this.productService.findAll();
+    public List<ProductDTO> getProducts() {
+        return this.productService.products();
     };
 
     @GetMapping("/{productId}")
     @ResponseBody
-    public Product getProduct(@PathVariable(value = "productId") String productId) throws Exception{
-        return this.productService.find(Integer.parseInt(productId));
+    public ProductDTO getProduct(@PathVariable(value = "productId") String productId) throws Exception{
+        return this.productService.productById(Integer.parseInt(productId));
     };
 
     @GetMapping("/initialize")
@@ -47,7 +48,7 @@ public class ProductRoute {
     
     @GetMapping("/category/{categoryName}")
     @ResponseBody
-    public List<Product> getProductsByCategory(@PathVariable(value = "categoryName") String categoryName) {
+    public List<ProductDTO> getProductsByCategory(@PathVariable(value = "categoryName") String categoryName) {
         return this.productService.productsByCategory(categoryName);
     };
 };
