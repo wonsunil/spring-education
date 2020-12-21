@@ -5,17 +5,16 @@ import lombok.Setter;
 import lombok.Getter;
 import lombok.AllArgsConstructor;
 
-import java.util.Collection;
-
 @Setter
 @Getter
 @AllArgsConstructor
 public class ProductDTO {
     private int productId;
     private String name;
-    private String description
+    private String description;
     private int listPrice;
     private int price;
+    private String category;
     private String imageUrl;
 
     public ProductDTO(Product product) {
