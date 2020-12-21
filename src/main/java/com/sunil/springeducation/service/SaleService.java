@@ -8,8 +8,8 @@ import com.sunil.springeducation.model.Product;
 import com.sunil.springeducation.model.Sale;
 import com.sunil.springeducation.model.User;
 import com.sunil.springeducation.repository.*;
-import com.sunil.springeducation.datamodel.SaleStatus;
-import com.sunil.springeducation.vo.SalePurchaseVO;
+import com.sunil.springeducation.datamodel.enumModel.SaleStatus;
+import com.sunil.springeducation.datamodel.vo.SalePurchaseVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 

@@ -1,6 +1,6 @@
 package com.sunil.springeducation.model;
 
-import com.sunil.springeducation.datamodel.SaleStatus;
+import com.sunil.springeducation.datamodel.enumModel.SaleStatus;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

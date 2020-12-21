@@ -2,7 +2,7 @@ package com.sunil.springeducation.service;
 
 import com.sunil.springeducation.repository.ProductRepository;
 import com.sunil.springeducation.model.Product;
-import com.sunil.springeducation.vo.ProductRegisterVO;
+import com.sunil.springeducation.datamodel.vo.ProductRegisterVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 

@@ -2,7 +2,7 @@ package com.sunil.springeducation.service;
 
 import com.sunil.springeducation.model.Coupon;
 import com.sunil.springeducation.repository.CouponRepository;
-import com.sunil.springeducation.vo.CouponRegisterVO;
+import com.sunil.springeducation.datamodel.vo.CouponRegisterVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 

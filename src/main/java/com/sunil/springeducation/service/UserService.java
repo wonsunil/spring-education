@@ -1,12 +1,12 @@
 package com.sunil.springeducation.service;
 
 import com.sunil.springeducation.datamodel.SaleGroupByUserId;
-import com.sunil.springeducation.datamodel.UserGradeEnum;
+import com.sunil.springeducation.datamodel.enumModel.UserGradeEnum;
 import com.sunil.springeducation.datamodel.UserTotalPaidPrice;
 import com.sunil.springeducation.model.User;
 import com.sunil.springeducation.repository.SaleRepository;
 import com.sunil.springeducation.repository.UserRepository;
-import com.sunil.springeducation.vo.UserRegisterVO;
+import com.sunil.springeducation.datamodel.vo.UserRegisterVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 

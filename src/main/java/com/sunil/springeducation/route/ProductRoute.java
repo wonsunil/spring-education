@@ -2,7 +2,7 @@ package com.sunil.springeducation.route;
 
 import com.sunil.springeducation.service.ProductService;
 import com.sunil.springeducation.model.Product;
-import com.sunil.springeducation.vo.ProductRegisterVO;
+import com.sunil.springeducation.datamodel.vo.ProductRegisterVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

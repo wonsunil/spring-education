@@ -4,7 +4,7 @@ import com.sunil.springeducation.service.CouponService;
 import com.sunil.springeducation.service.IssuedCouponService;
 import com.sunil.springeducation.model.Coupon;
 import com.sunil.springeducation.model.IssuedCoupon;
-import com.sunil.springeducation.vo.CouponRegisterVO;
+import com.sunil.springeducation.datamodel.vo.CouponRegisterVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
